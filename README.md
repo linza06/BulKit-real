@@ -4,7 +4,7 @@
 Member 1: Linsa Biji – MITS 
 
 ## Hosted Project Link  
-[]
+[https://bulkitt.onrender.com]
 
 ## Project Description  
 BulkiT is a web application that generates certificates in bulk by taking a template image and an Excel/CSV file containing user details.
@@ -48,9 +48,13 @@ python app.py
 ### For Software:
 
 <img width="1887" height="815" alt="Screenshot 2026-02-21 071558" src="https://github.com/user-attachments/assets/bb9d9edb-dc70-49c9-a718-3f3bdbfd27e6" />
-This is the landing Page of the site
+This is the landing Page of the site.
 
 <img width="1888" height="829" alt="Screenshot 2026-02-21 072621" src="https://github.com/user-attachments/assets/669cb4f4-38cf-4b4c-b0b2-bd325ea8c9e0" />
+This is where you can customize the font and arrange the position.
+
+<img width="1895" height="829" alt="image" src="https://github.com/user-attachments/assets/1b8ed551-612d-404a-8c81-1b8612d6be34" />
+You can view the preview of the file before downloading it.
 
 
 
