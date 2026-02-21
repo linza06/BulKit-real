@@ -1,88 +1,121 @@
-## BulkiT — Bulk Certificate Generator
-Generate beautiful certificates in bulk with custom templates, fonts, and positioning.
+# BulkiT – Bulk Certificate Generator
 
-## ✨ Features
-- Multi-template support (1st, 2nd, 3rd place + participant)
-- Batch process 100+ certificates from CSV/Excel
-- Real-time preview before download
-- Export as PNG, JPG, or PDF
-- Custom fonts and positioning
-- Drag & drop file upload
+## Team Members  
+Member 1: Linsa Biji – MITS 
 
-## 📦 Installation
+## Hosted Project Link  
+[]
 
+## Project Description  
+BulkiT is a web application that generates certificates in bulk by taking a template image and an Excel/CSV file containing user details.
+
+## The Problem Statement  
+Generating certificates manually for large groups is time-consuming and error-prone when only names or a few fields change.
+
+## The Solution  
+BulkiT automates certificate creation by allowing users to upload a template and a list of names, and then generating all certificates automatically in bulk.
+
+## Technical Details  
+
+### Technologies/Components Used  
+
+#### For Software:  
+Languages used: Python, HTML, CSS  
+Frameworks used: Flask  
+Libraries used: Pandas, Pillow  
+Tools used: VS Code, Git, GitHub  
+
+## Features  
+Feature 1: Upload certificate/ID template  
+Feature 2: Upload Excel/CSV file with user data  
+Feature 3: Generate certificates automatically in bulk  
+Feature 4: Download all certificates as a ZIP file  
+
+## Implementation  
+
+### For Software:  
+
+#### Installation  
 ```bash
-# Install dependencies
-pip install flask pillow pandas openpyxl
-
-# Create folders
-mkdir uploads generated static/previews static/fonts
-
-# Run app
+pip install flask pandas pillow
+```
+###Run
+```bash
 python app.py
 ```
-## 🗂️ Project Structure
 
-```
-BulkiT/
-├── app.py              # Flask backend
-├── templates/
-│   └── index.html      # Frontend UI
-├── static/
-│   ├── fonts/          # .ttf font files
-│   └── previews/       # Generated previews
-├── uploads/            # Temp uploaded files
-└── generated/          # Output ZIP files
-```
+## Project Documentation
+### For Software:
 
-## 🔄 How It Works
+<img width="1887" height="815" alt="Screenshot 2026-02-21 071558" src="https://github.com/user-attachments/assets/bb9d9edb-dc70-49c9-a718-3f3bdbfd27e6" />
+This is the landing Page of the site
 
-1. **Upload Files** → Template images + CSV with names/status
-2. **Customize** → Adjust font, position, color, size
-3. **Preview** → See first certificate before batch
-4. **Download** → Get ZIP with all certificates
+<img width="1888" height="829" alt="Screenshot 2026-02-21 072621" src="https://github.com/user-attachments/assets/669cb4f4-38cf-4b4c-b0b2-bd325ea8c9e0" />
 
-## 📚 Key Functions
 
-### Backend (app.py)
 
-| Function | Purpose |
-|----------|---------|
-| `draw_certificate()` | Draw name on template image |
-| `choose_template_for_status()` | Select template based on status |
-| `GET /get_fonts` | List available fonts |
-| `POST /preview` | Generate single preview |
-| `POST /upload` | Generate & download all certificates |
 
-### Frontend (JavaScript)
+### Diagrams
+        ┌─────────────────────┐
+        │        Start        │
+        └─────────┬───────────┘
+                  │
+                  ▼
+        ┌─────────────────────┐
+        │  User Opens Web App │
+        └─────────┬───────────┘
+                  │
+                  ▼
+        ┌────────────────────────────┐
+        │ Upload Certificate Template│
+        │     (Image: JPG/PNG)       │
+        └─────────┬──────────────────┘
+                  │
+                  ▼
+        ┌────────────────────────────┐
+        │ Upload Names File          │
+        │ (CSV / Excel File)         │
+        └─────────┬──────────────────┘
+                  │
+                  ▼
+        ┌────────────────────────────┐
+        │  Flask Backend Receives    │
+        │        Files               │
+        └─────────┬──────────────────┘
+                  │
+                  ▼
+        ┌────────────────────────────┐
+        │  Pandas Reads CSV/Excel    │
+        │  Extracts List of Names    │
+        └─────────┬──────────────────┘
+                  │
+                  ▼
+        ┌────────────────────────────┐
+        │ For Each Name:             │
+        │  → Open Template (Pillow)  │
+        │  → Add Name Text           │
+        │  → Save Certificate        │
+        └─────────┬──────────────────┘
+                  │
+                  ▼
+        ┌────────────────────────────┐
+        │  Store Generated Files     │
+        │   (PDF / PNG Format)       │
+        └─────────┬──────────────────┘
+                  │
+                  ▼
+        ┌────────────────────────────┐
+        │ Provide Download Option    │
+        │ (Single / ZIP File)        │
+        └─────────┬──────────────────┘
+                  │
+                  ▼
+        ┌─────────────────────┐
+        │        End          │
+        └─────────────────────┘
 
-| Function | Purpose |
-|----------|---------|
-| `loadFonts()` | Fetch fonts from backend |
-| `updatePreview()` | Generate live preview |
-| `debounce()` | Prevent excessive calls |
+  ## Project Demo
+  [https://drive.google.com/file/d/1AQf-jYH366gzzecsFzKFZDzECQFGwYD8/view?usp=drive_link]
 
-## 📖 Quick Start
 
-### CSV Format
-```
-Name,Status
-John Doe,1st
-Jane Smith,2nd
-Bob Johnson,Null
-```
-### Steps
-1. Create CSV with names in Column 1, status in Column 2
-2. Upload participant template (required)
-3. Upload other templates (optional) and check boxes
-4. Adjust Y-Position and Font Size
-5. Click "Preview" to test
-6. Click "Download ZIP"
-
-## 📦 Dependencies
-
-- **Flask** — Web framework
-- **Pillow** — Image processing
-- **Pandas** — CSV/Excel handling
-- **Tailwind CSS** — Frontend styling (CDN)
 
