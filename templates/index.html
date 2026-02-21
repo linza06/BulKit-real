@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BulkiT — Certificate Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<header>
+    <div class="logo">BulkiT</div>
+    <div class="tagline">Bulk Certificate Generator</div>
+</header>
+
+<main>
+
+  
+    <div class="form-col">
+        <form id="certForm" action="/upload" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="export_format" id="export_format_val" value="png">
+
+            <div class="card">
+                <div class="step-header">
+                    <div class="step-num">1</div>
+                    <div class="step-title">Upload Templates</div>
+                </div>
+
+                <div class="notice">
+                    💡 Upload at least a <strong>Participant template</strong>
+                    Add 1st / 2nd / 3rd templates if your spreadsheet has a Status column.
+                </div>
+
+                <div class="templates-grid">
+
+                    <div>
+                        <label class="drop-zone" id="zone-first">
+                            <input type="file" name="first_template" id="first_template" accept=".jpg,.jpeg,.png">
+                            <div class="dz-placeholder">
+                                <div class="dz-icon">🥇</div>
+                                <span class="dz-badge badge-1st">1st Place</span>
+                                <div class="dz-hint"><strong>Drop image</strong><br>or click to browse</div>
+                            </div>
+                            <div class="dz-thumbnail">
+                                <img src="" alt="1st place template preview">
+                                <div class="dz-thumbnail-bar">
+                                    <span>filename.png</span>
+                                    <button type="button">✕ Clear</button>
+                                </div>
+                            </div>
+                        </label>
+                        <label class="checkbox-row">
+                            <input type="checkbox" name="has_first" id="has_first">
+                            Enable 1st place
+                        </label>
+                    </div>
+
+                    <div>
+                        <label class="drop-zone" id="zone-second">
+                            <input type="file" name="second_template" id="second_template" accept=".jpg,.jpeg,.png">
+                            <div class="dz-placeholder">
+                                <div class="dz-icon">🥈</div>
+                                <span class="dz-badge badge-2nd">2nd Place</span>
+                                <div class="dz-hint"><strong>Drop image</strong><br>or click to browse</div>
+                            </div>
+                            <div class="dz-thumbnail">
+                                <img src="" alt="2nd place template preview">
+                                <div class="dz-thumbnail-bar">
+                                    <span>filename.png</span>
+                                    <button type="button">✕ Clear</button>
+                                </div>
+                            </div>
+                        </label>
+                        <label class="checkbox-row">
+                            <input type="checkbox" name="has_second" id="has_second">
+                            Enable 2nd place
+                        </label>
+                    </div>
+
+
+                    <div>
+                        <label class="drop-zone" id="zone-third">
+                            <input type="file" name="third_template" id="third_template" accept=".jpg,.jpeg,.png">
+                            <div class="dz-placeholder">
+                                <div class="dz-icon">🥉</div>
+                                <span class="dz-badge badge-3rd">3rd Place</span>
+                                <div class="dz-hint"><strong>Drop image</strong><br>or click to browse</div>
+                            </div>
+                            <div class="dz-thumbnail">
+                                <img src="" alt="3rd place template preview">
+                                <div class="dz-thumbnail-bar">
+                                    <span>filename.png</span>
+                                    <button type="button">✕ Clear</button>
+                                </div>
+                            </div>
+                        </label>
+                        <label class="checkbox-row">
+                            <input type="checkbox" name="has_third" id="has_third">
+                            Enable 3rd place
+                        </label>
+                    </div>
+
+
+                    <div>
+                        <label class="drop-zone" id="zone-part">
+                            <input type="file" name="participant_template" id="participant_template" accept=".jpg,.jpeg,.png">
+                            <div class="dz-placeholder">
+                                <div class="dz-icon">🎓</div>
+                                <span class="dz-badge badge-part">Participant</span>
+                                <div class="dz-hint"><strong>Drop image</strong><br>or click to browse</div>
+                            </div>
+                            <div class="dz-thumbnail">
+                                <img src="" alt="Participant template preview">
+                                <div class="dz-thumbnail-bar">
+                                    <span>filename.png</span>
+                                    <button type="button">✕ Clear</button>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="step-header">
+                    <div class="step-num">2</div>
+                    <div class="step-title">Upload Names</div>
+                </div>
+
+                <label class="drop-zone wide csv-zone" id="zone-csv">
+                    <input type="file" name="csv" id="csv_file" accept=".csv,.xlsx,.xls" required>
+                    <div class="dz-placeholder">
+                        <div class="dz-icon">📄</div>
+                        <div>
+                            <span class="dz-badge badge-csv">CSV / Excel</span>
+                            <div class="dz-hint" style="margin-top:6px;">
+                                <strong>Drop your spreadsheet here</strong><br>
+                                Column 1: Name &nbsp;·&nbsp; Column 2: Status (optional)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dz-file-info">
+                        <div class="dz-file-info-icon">✅</div>
+                        <div>
+                            <div class="dz-file-info-name">filename.csv</div>
+                            <div class="dz-file-info-sub">0 KB</div>
+                        </div>
+                        <button type="button">✕ Remove</button>
+                    </div>
+                </label>
+
+                <label class="toggle-row">
+                    <div>
+                        <div class="toggle-label">All rows are participants</div>
+                        <div class="toggle-sub">Ignore the Status column entirely</div>
+                    </div>
+                    <label class="toggle">
+                        <input type="checkbox" name="all_participants" id="all_participants">
+                        <span class="slider"></span>
+                    </label>
+                </label>
+            </div>
+
+            <div class="card">
+                <div class="step-header">
+                    <div class="step-num">3</div>
+                    <div class="step-title">Customize Text</div>
+                </div>
+
+                <div class="input-grid" style="margin-bottom:14px;">
+                    <div class="input-group">
+                        <label>Y Position (px)</label>
+                        <input type="number" name="y_pos" id="y_pos" value="450" min="0" max="9999">
+                    </div>
+                    <div class="input-group">
+                        <label>Font Size (px)</label>
+                        <input type="number" name="font_size" id="font_size" value="80" min="8" max="500">
+                    </div>
+                </div>
+
+                <div class="input-group" style="margin-bottom:16px;">
+                    <label>Font</label>
+                    <select name="font_name" id="font_name">
+                        <option value="arial.ttf">Loading…</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>Text Color</label>
+                    <div class="color-row" style="margin-top:4px;">
+                        <div class="swatch-group">
+                            <button type="button" class="swatch active" data-color="#ffffff" style="background:#ffffff; box-shadow:inset 0 0 0 1px #ccc;" title="White"></button>
+                            <button type="button" class="swatch" data-color="#000000" style="background:#000000;" title="Black"></button>
+                            <button type="button" class="swatch" data-color="#C8570A" style="background:#C8570A;" title="Amber"></button>
+                            <button type="button" class="swatch" data-color="#1A5276" style="background:#1A5276;" title="Navy"></button>
+                            <button type="button" class="swatch" data-color="#2D7A4F" style="background:#2D7A4F;" title="Forest"></button>
+                            <button type="button" class="swatch" data-color="#7D3C98" style="background:#7D3C98;" title="Purple"></button>
+                        </div>
+                        <div class="swatch-custom" title="Pick custom color">
+                            <div class="swatch-custom-icon" id="swatch-custom-display" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;">🎨</div>
+                            <input type="color" name="color" id="color" value="#ffffff">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="step-header">
+                    <div class="step-num">4</div>
+                    <div class="step-title">Export Format</div>
+                </div>
+                <div class="chip-group">
+                    <button type="button" class="chip active" data-fmt="png">PNG</button>
+                    <button type="button" class="chip" data-fmt="jpg">JPG</button>
+                    <button type="button" class="chip" data-fmt="pdf">PDF</button>
+                </div>
+
+                <div class="btn-row">
+                    <button type="button" class="btn btn-outline" onclick="updatePreview()">
+                        👁&nbsp; Preview
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        ⬇&nbsp; Download ZIP
+                    </button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+    <div class="preview-panel">
+        <div class="preview-card">
+            <div class="preview-card-header">
+                <div class="preview-card-title">Preview</div>
+                <span class="preview-badge" id="previewBadge">Not yet generated</span>
+            </div>
+            <div class="preview-canvas">
+                <div class="preview-placeholder-inner" id="previewPlaceholder">
+                    <div class="big-icon">🎓</div>
+                    <p>Fill in settings &amp; click<br><strong>Preview</strong> to see a sample</p>
+                </div>
+                <img id="previewImg" alt="Certificate preview">
+                <div class="preview-spinner" id="previewSpinner">
+                    <div class="spinner"></div>
+                </div>
+            </div>
+            <div class="preview-footer">
+                <span id="previewStatus">No preview yet</span>
+                <span style="font-size:11px;">First row of your CSV</span>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
