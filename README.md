@@ -54,7 +54,7 @@ This is the landing Page of the site.
 This is where you can customize the font and arrange the position.
 
 <img width="1895" height="829" alt="image" src="https://github.com/user-attachments/assets/1b8ed551-612d-404a-8c81-1b8612d6be34" />
-You can view the preview of the file before downloading it.
+You can preview the file before downloading it.
 
 
 
