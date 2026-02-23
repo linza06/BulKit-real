@@ -26,10 +26,13 @@ Libraries used: Pandas, Pillow
 Tools used: VS Code, Git, GitHub  
 
 ## Features  
-Feature 1: Upload certificate/ID template  
-Feature 2: Upload Excel/CSV file with user data  
-Feature 3: Generate certificates automatically in bulk  
-Feature 4: Download all certificates as a ZIP file  
+Feature 1: Bulk certificate generation
+Feature 2: Live certificate preview
+Feature 3: Customize font style
+Feature 4: Adjust font size
+Feature 5: Change font color
+Feature 6: Modify text position 
+Feature 7: Download generated certificates in prefered format
 
 ## Implementation  
 
